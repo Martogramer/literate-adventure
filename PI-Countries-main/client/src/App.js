@@ -1,9 +1,17 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import './App.css';
 
-function App() {
+
+const App=()=> {
   return (
     <div className="App">
-      <h1>Henry Countries</h1>
+      <BrowserRouter>
+        <Routes>
+        <Route />
+
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
