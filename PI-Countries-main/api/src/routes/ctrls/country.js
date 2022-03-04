@@ -1,26 +1,28 @@
 const { Op } = require("sequelize");
-const { Country, Activity } = require('../../db');
+const { Country, Activity } = require("../../db");
 const axios = require('axios');
 
 const getApi = async()=>{
     try {
-        let countries = (await axios.get("https://restcountries.com/v3/all")).data
-        countries = await Promise.all(
-            countries.map((country)=>{
+        
+        const url = await axios.get(`https://restcountries.com/v3/all`).data
+        //let countries = url.data
+        url=Promise.all(
+            url.map((country)=>{
                 Country.findOrCreate({
-                    where: {
-                        id: country.cca3,
-                        name: country.name.common,
-                        flags: country.flags[1],
-                        continent: country.continents[0],
-                        capital: country.capital ? country.capital[0] : "Not found",
-                        subregion: country.subregion ? country.subregion : "Not found",
-                        area: country.area,
-                        population: country.population,
-                    },
+                        where: {
+                            id: country.cca3,
+                            name: country.name.common,
+                            flags: country.flags[1],
+                            continent: country.continents[0],
+                            capital: country.capital ? country.capital[0] : "Not found",
+                            subregion: country.subregion ? country.subregion : "Not found",
+                            area: country.area,
+                            population: country.population,
+                        },
                 })
-            })
-        )
+            }))
+        
     }catch(error){return error}
 };
 
@@ -54,21 +56,27 @@ const getCountryByName = async(name)=>{
     return country
 }
 
+
+
+
 const getCountries=async(req, res)=>{
     const {name}=req.query
-    let data
+    const allCountries=await getAllCountries()
     try{
         if(name){
-            data=await getCountryByName(name)
-            res.send(data)
-        }else{
-            data=await getAllCountries()
-            data.length > 0
-            ? res.send(data)
+            const country=await getCountryByName(name)
+
+            country.length
+            ? res.status(200).send(country)
             : res.status(404).send({ message: "No se encontraron"})
+        }else{
+            
+            return res.status(200).send(allCountries)
         }
     }catch (error){res.send(error)}
 };
+
+
 
 const getCountriesById=async (req, res)=>{
     const{id}=req.params
