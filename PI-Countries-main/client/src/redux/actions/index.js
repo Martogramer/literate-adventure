@@ -2,7 +2,8 @@ import axios from 'axios'
 import {
     GET_ALL_COUNTRIES,
     GET_COUNTRY_ID,
-    GET_ALL_ACTIVITIES
+    GET_ALL_ACTIVITIES,
+    SET_CURRENT_PAGE
 } from './types'
 
 export const getAllCountries=(name)=>{
@@ -44,3 +45,9 @@ export const getAllActivity=()=>{
     }
 };
 
+export const setCurrentPage = (payload) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload,
+    }
+};
