@@ -9,13 +9,13 @@ import {
 export const getAllCountries=(name)=>{
     return(dispatch)=>{
         axios.get(`http://localhost:3001/countries?name=${name ? name : ""}`)
-        .then((response)=>{
+        .then((res)=>{
             return dispatch({
                 type: GET_ALL_COUNTRIES,
-                payload: response.data
+                payload: res.data
             })
         })
-        .catch((error)=>{alert(error.response.data.message)})
+        .catch((error)=>{alert(error.res.data.message)})
     }
 };
 
