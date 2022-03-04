@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import style from '../'
+//import style from '../'
+import Country from '../contry/Country'
+import Loading from '../loader/Loading'
 
-import { getAllCountries, getAllActivity, setCurrentPage } from "../../redux/actions/INDEX.JS";
+import { getAllCountries, getAllActivity, setCurrentPage } from "../../redux/actions/index";
 
 const Home=()=>{
     const dispatch = useDispatch();
@@ -47,8 +49,18 @@ const Home=()=>{
     
     return(
         <div>
-            <div className={style.country}>
-
+            <div >
+                {loader ? (
+                    <Loading />  //importar el componente loading
+                ): (countries.length > 0 &&
+                    currentCountries?.map((country, index)=>(
+                        <Country 
+                            key={index}
+                            id={country.id}
+                            name={country.name}
+                            flags={country.flags}
+                            continent={country.continent}/>
+                    )))}
             </div>
         </div>
     )
