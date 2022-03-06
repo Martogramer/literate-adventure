@@ -5,10 +5,10 @@ const axios = require('axios');
 const getApi = async()=>{
     try {
         
-        const url = await axios.get(`https://restcountries.com/v3/all`).data
-        //let countries = url.data
-        url=Promise.all(
-            url.map((country)=>{
+        const url = await axios.get(`https://restcountries.com/v3/all`)
+        const countries = url.data
+        Promise.all(
+            countries.map((country)=>{
                 Country.findOrCreate({
                         where: {
                             id: country.cca3,
