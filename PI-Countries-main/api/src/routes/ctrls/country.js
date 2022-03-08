@@ -25,6 +25,7 @@ const getApi = async()=>{
         
     }catch(error){return error}
 };
+getApi();
 
 const getAllCountries = async()=>{
     const countries=await Country.findAll({
@@ -75,7 +76,7 @@ const getCountries=async(req, res)=>{
         }
     }catch (error){res.send(error)}
 };
-
+getCountries();
 
 
 const getCountriesById=async (req, res)=>{
