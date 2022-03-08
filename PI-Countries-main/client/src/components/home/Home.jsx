@@ -9,8 +9,9 @@ import { getAllCountries, getAllActivity, setCurrentPage } from "../../redux/act
 
 const Home=()=>{
     const dispatch = useDispatch();
-    const { countries, page, allActivity } = useSelector((state) => state);
+    const { countries, page, allActivity } = useSelector((state) => state.payload);
     const [loader, setLoader] = useState(true);
+    const [filters, setFilters] = useState(false)
 
     let countriesPerPage=10;
     const indexOfLastCountry = page * countriesPerPage - 1; // 1 * 10 -1 = 9 | 2 * 10 -1 = 19 | 3 * 10 -1 = 29
@@ -65,4 +66,4 @@ const Home=()=>{
         </div>
     )
 }
-export default Home
+export default Home();
