@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Country from '../contry/Country'
 import Loading from '../loader/Loading'
 
-import { getAllCountries, getAllActivity, setCurrentPage } from "../../redux/actions/index";
+import { getAllCountries, getAllActivity, setCurrentPage, filterCountryByContinent, filterCountryByActivity, orderCountries } from "../../redux/actions/index";
 
 const Home=()=>{
     const dispatch = useDispatch();
-    const { countries, page, allActivity } = useSelector((state) => state.payload);
+    const { countries, page, allActivity } = useSelector((state) => state);
     const [loader, setLoader] = useState(true);
-    const [filters, setFilters] = useState(false)
+    const [filters, setFilters] = useState(false);
+    const [setOrder]=useState();
 
     let countriesPerPage=10;
     const indexOfLastCountry = page * countriesPerPage - 1; // 1 * 10 -1 = 9 | 2 * 10 -1 = 19 | 3 * 10 -1 = 29
@@ -36,6 +37,25 @@ const Home=()=>{
     
         return () => clearTimeout(timer);
     }, [dispatch]);
+
+    const handleFilterContinent = (e) => {
+        e.preventDefault();
+        dispatch(filterCountryByContinent(e.target.value));
+        dispatch(setCurrentPage(1));
+        setOrder(e.target.value);
+    };
+    
+    const handleFilterActivity = (e) => {
+        e.preventDefault();
+        dispatch(filterCountryByActivity(e.target.value));
+        setOrder(e.target.value);
+    };
+    
+    const handleOrdered = (e) => {
+        e.preventDefault();
+        dispatch(orderCountries(e.target.value));
+        setOrder(e.target.value);
+    };
 
     const handleClick = (e) => {
         e.preventDefault();
