@@ -1,20 +1,86 @@
-import React, {useState} from "react";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import React, {useState} from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import style from '../'
 import Country from '../contry/Country'
 import Loading from '../loader/Loading'
+import Pagination from "../pag/Pagination";
 
 import { getAllCountries, getAllActivity, setCurrentPage, filterCountryByContinent, filterCountryByActivity, orderCountries } from "../../redux/actions/index";
 
 const Home=()=>{
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllCountries());
+        dispatch(Loading())
+    }, [dispatch]);
     const { countries, page, allActivity } = useSelector((state) => state);
-    const [loader, setLoader] = useState(true);
+    const loader = useSelector((state)=>state.Loading) */
+/*     const [loader, setLoader] = useState(true);
     const [filters, setFilters] = useState(false);
     const [setOrder]=useState();
+    const [loader, setLoader] = useState(true);
+    const [filters, setFilters] = useState(false);
+    const [setOrder]=useState(); */
 
-    let countriesPerPage=10;
+/*     const [currentPage, setCurrentPage] = useState(1);
+    const [countriesXPage] = useState(12);
+
+    const indexOfLastCountry = currentPage * countriesXPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesXPage;
+    const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry);
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
+ */
+
+
+/*     let countriesPerPage=10;
     const indexOfLastCountry = page * countriesPerPage - 1; // 1 * 10 -1 = 9 | 2 * 10 -1 = 19 | 3 * 10 -1 = 29
     const indexOfFirstCountry = page === 1
     ? indexOfLastCountry - (countriesPerPage - 1)
@@ -22,23 +88,12 @@ const Home=()=>{
     const currentCountries = countries.slice(
     indexOfFirstCountry,
     indexOfLastCountry
-);
+); */
 
-    const timer = (time) =>
-    setTimeout(() => {
-        setLoader(false);
-    }, time);
 
-    useEffect(() => {
-        setLoader(true);
-        dispatch(getAllActivity());
-        timer(1000);
-        dispatch(getAllCountries());
-    
-        return () => clearTimeout(timer);
-    }, [dispatch]);
 
-    const handleFilterContinent = (e) => {
+
+/*     const handleFilterContinent = (e) => {
         e.preventDefault();
         dispatch(filterCountryByContinent(e.target.value));
         dispatch(setCurrentPage(1));
@@ -64,26 +119,31 @@ const Home=()=>{
         dispatch(setCurrentPage(1));
         timer(500);
     };
-    
+     */
 
 
     
-    return(
+/*     return(
         <div>
-            <div >
-                {loader ? (
-                    <Loading />  //importar el componente loading
-                ): (countries.length > 0 &&
-                    currentCountries?.map((country, index)=>(
-                        <Country 
-                            key={index}
-                            id={country.id}
-                            name={country.name}
-                            flags={country.flags}
-                            continent={country.continent}/>
-                    )))}
-            </div>
+                {!loader 
+                ? 
+            
+                <div >
+                    {
+                        currentCountries?.map(country=>(
+                            <Country 
+                                key={country.id}
+                                name={country.name}
+                                flags={country.flags}
+                                continent={country.continent}/>
+                        ))
+                    }
+                </div>
+                :
+                <Loading />
+                }
+    <Pagination countriesXPage={countriesXPage} allCountries={countries.length} paginate={paginate} currentPage={currentPage} />
         </div>
     )
 }
-export default Home();
+export default Home */
