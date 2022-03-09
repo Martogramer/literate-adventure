@@ -61,7 +61,7 @@ const getCountryByName = async(name)=>{
 
 
 const getCountries=async(req, res)=>{
-    const {name}=req.query
+    const {name} = req.query;
     const allCountries=await getAllCountries()
     try{
         if(name){
