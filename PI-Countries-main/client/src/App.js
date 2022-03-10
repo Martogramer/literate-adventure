@@ -1,21 +1,29 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from './components/home/Home'
-//import Detail from './components/detail'
+import LandingPage from "./components/LandingPage";
+import Home from "./components/Home";
+import styled from "styled-components";
+import Form from "./components/Form";
+import Detail from "./components/Detail";
+import NotFound from "./components/NotFound";
 
-import './App.css';
-
-
-const App=()=> {
+export default function App() {
   return (
-    <div className="App">
+    <ContentWrapper>
       <BrowserRouter>
         <Routes>
-        
-        <Route path="/home" element={<Home />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/home/detail/:id" element={<Detail />} />
+          <Route path="/create" element={<Form />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </ContentWrapper>
   );
 }
 
-export default App;
+const ContentWrapper = styled.div`
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: auto;
+`;

@@ -1,19 +1,27 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const {
-    getCountries,
-    getCountriesById
-} = require('./ctrls/country')
+  getCountries,
+  getCountriesById,
+} = require("../routes/controllers/country.js");
 const {
-    getActivitiesByName,
-    postActivity
-} = require('./ctrls/activity')
+  getActivitiesByName,
+  postActivity,
+} = require("../routes/controllers/activity.js");
+
 
 const router = Router();
-const {Country, Activity, country_activity} = require('../db')
 
-router.get('/countries', getCountries)
-router.get("/countries/:id", getCountriesById)
-router.get("/activities", getActivitiesByName)
-router.post("/activity", postActivity)
+// Importar todos los modelos;
+const { Country, Activity, country_activity } = require("../db.js");
+
+// Configurar los routers
+// Ejemplo: router.use('/auth', authRouter);
+
+//Obtener todos los paises
+
+router.get("/countries", getCountries);
+router.get("/countries/:id", getCountriesById);
+router.get("/activities", getActivitiesByName);
+router.post("/activity", postActivity);
 
 module.exports = router;
