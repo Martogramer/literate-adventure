@@ -1,11 +1,11 @@
 import { createGlobalStyle } from "styled-components";
-import background from "./assets/background.jpg";
+import background from "./assets/ekrulila-KGTl3hv-R78-unsplash.jpg";
 
 export const GlobalStyles = createGlobalStyle`
 
 :root{
      --main-color : #1F1D36;
-     --background-color: #2b2c34; 
+     --background-color: #000; 
      --text-color: #fffffe;
      --primary : #01937c;
      --secondary : #ff8906;
